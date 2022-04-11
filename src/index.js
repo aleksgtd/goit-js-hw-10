@@ -52,12 +52,6 @@ function onCountryCount(array) {
   }
 }
 
-// array = [{flags: {png: 'https://flagcdn.com/w320/wf.png', svg: 'https://flagcdn.com/wf.svg'},
-// name: { common: 'Wallis and Futuna', official: 'Territory of the Wallis and Futuna Islands', nativeName: {… } },
-// capital: Array(1),
-// languages: { fra: 'French' },
-// population: 11750}, ...]
-
 function onMarkupDelete() {
   refs.list.innerHTML = '';
   refs.card.innerHTML = '';
