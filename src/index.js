@@ -17,6 +17,7 @@ refs.input.addEventListener('input', debounce(onInputFn, DEBOUNCE_DELAY));
 
 function onInputFn(e) {
   e.preventDefault();
+  onMarkupDelete();
   let name = '';
   name = e.target.value.trim();
   onCountrySearch(name);
@@ -60,6 +61,7 @@ function onMarkupDelete() {
 function onListMarkup(array) {
   onMarkupDelete();
   refs.list.style.listStyleType = 'none';
+  refs.list.style.padding = '0';
   array.forEach(({ flags, name }) => {
     refs.list.insertAdjacentHTML(
       'beforeend',
