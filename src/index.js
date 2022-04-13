@@ -20,22 +20,26 @@ function onInputFn(e) {
   onMarkupDelete();
   let name = '';
   name = e.target.value.trim();
+
+  if (!name) {
+    return;
+  }
   onCountrySearch(name);
 }
 
 function onCountrySearch(name) {
   let urlName = `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`;
   fetchCountries(urlName)
-    .then(r => r.json())
     .then(d => {
-      if (d.status === 404) {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
-        throw new Error();
-      } else {
-        onCountryCount(d);
-      }
+      onCountryCount(d);
     })
     .catch(e => {
+      if (Number(e.message) === 404) {
+        Notiflix.Notify.failure('Oops, there is no country with that name');
+      } else {
+        Notiflix.Notify.failure(`Oops, there is a mistake! Mistake status: ${e.message}`);
+      }
+
       onMarkupDelete();
     });
 }
