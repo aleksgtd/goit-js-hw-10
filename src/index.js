@@ -28,17 +28,12 @@ function onInputFn(e) {
 }
 
 function onCountrySearch(name) {
-  let urlName = `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`;
-  fetchCountries(urlName)
+  fetchCountries(name)
     .then(d => {
       onCountryCount(d);
     })
     .catch(e => {
-      if (Number(e.message) === 404) {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
-      } else {
-        Notiflix.Notify.failure(`Oops, there is a mistake! Mistake status: ${e.message}`);
-      }
+      Notiflix.Notify.failure('Oops, there is no country with that name');
 
       onMarkupDelete();
     });
